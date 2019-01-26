@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block content %}
+{% include "header.html" %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class='flash'>
+
+    <ul>
+        {% for message in messages %}
+        <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endif %}
+{% endwith %}
+<div class="flex-body">
+    <div>
+        <h2>Catagories</h2>
+        {% for category in catagories %}
+        <a style="display: block; color: #3367d6;" href="{{ category.id }}">{{ category.name }}</a>
+        {% endfor %}
+    </div>
+    <div class="headLine">
+        <h2>{{ headLine }}</h2>
+        {% if items %}
+        {% for item in items %}
+        <div>
+            <a style="color:orangered;" href="{{ url_for('item', category_id=item.category_id, item_id=item.id)}}">{{ item.name }}</a>
+            {% if headLine != item.category.name%}
+            <span class="info">({{ item.category.name }}) </span> 
+            {% endif %}
+            <span class="info">by {{ item.user.name }}</span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <span> There is no items yet </span>
+        {% endif %}
+    </div>
+    {% if 'username' in session %}
+    <a style="color:brown;" href="{{ url_for('newItem') }}">Add new item</a>
+    {% endif %}
+
+</div>
+{% endblock %}

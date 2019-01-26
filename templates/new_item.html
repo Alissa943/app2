@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="flex-body">
+
+    <form method="post">
+        <div>
+            <label>Name:</label>
+            <input type="text" maxlength="100" minlength="3" name="name" required="true" pattern="[A-Za-z0-9]{1,20}">
+            <br>
+            <label>Description:</label>
+            <input type="text" maxlength="100" minlength="3" name="description" required="true" pattern="[A-Za-z0-9]{1,20}">
+            <br>
+            <label>Category:</label>
+
+            <select name="catagories">
+                {% for category in catagories%}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <button type="submit" id="submit" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

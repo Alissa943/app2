@@ -1,0 +1,10 @@
+<div class="flex-header">
+    <h1>Catalog App</h1>
+    <div>
+        {% if 'username' not in session %}
+        <a class="btn" href="{{ url_for('login') }}">Login</a>
+        {% else %}
+        <a class="btn"  href="{{ url_for('logout') }} ">Loguot</a>
+        {% endif %}
+    </div>
+</div>
